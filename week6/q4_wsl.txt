@@ -1,0 +1,63 @@
+姓名：周文韋
+學號：c112181106
+
+=== 任務 1：查看 WSL 環境資訊 ===
+請在 Windows 的 PowerShell 或 CMD 中執行以下指令，貼上結果：
+
+wsl --list --verbose
+NAME      STATE           VERSION
+
+Ubuntu    Running         2
+
+wsl --version
+WSL 版本： 2.2.4.0
+內核版本： 6.6.36.3
+WSLg 版本： 1.0.64
+MSRDC 版本： 1.2.5326
+Direct3D 版本： 1.3.10.0
+DXCore 版本： 10.0.26100.1
+Windows 版本： 10.0.22631.3880
+
+請回答：你的 WSL 版本是多少？安裝的 Linux 發行版叫什麼名稱？
+答：
+我的 WSL 版本是：2
+安裝的 Linux 發行版名稱是：Ubuntu
+
+=== 任務 2：檔案互通 — 從 WSL 存取 Windows ===
+以下操作在 WSL 終端機中執行：
+
+步驟 1：查看 Windows 桌面的檔案
+ls /mnt/c/Users/zhouwenwei/Desktop/ | head -10
+wsl_hello.txt
+Chrome.lnk
+VSCode.lnk
+Discord.lnk
+專題資料
+作業.docx
+課表.png
+系統分析與設計.pdf
+微積分筆記.txt
+照片.jpg
+
+步驟 2：查看 Windows 和 WSL 的路徑對應
+請將你自己 Windows 桌面的路徑，用兩種格式寫出來：
+Windows 路徑：C:\Users\zhouwenwei\Desktop
+WSL 路徑：/mnt/c/Users/zhouwenwei/Desktop
+
+=== 任務 3：檔案互通 — 從 WSL 建立檔案到 Windows ===
+
+步驟 1：在 WSL 中建立一個檔案到 Windows 桌面
+echo "我的學號是 c112181106，這個檔案從 WSL 建立" > /mnt/c/Users/zhouwenwei/Desktop/wsl_hello.txt
+無輸出表示成功
+
+步驟 2：在 WSL 中確認檔案已建立
+cat /mnt/c/Users/zhouwenwei/Desktop/wsl_hello.txt
+我的學號是 c112181106，這個檔案從 WSL 建立
+
+步驟 3：從 WSL 打開 Windows 檔案總管查看家目錄
+explorer.exe ~
+我看到了 Windows 檔案總管被啟動，並自動開啟了一個預設路徑。視窗內顯示的是 WSL (Ubuntu) 系統內部的家目錄（~），路徑列顯示為「\wsl.localhost\Ubuntu\home\zhouwenwei」，裡面可以看到包含 .bashrc 以及其他 Linux 設定檔與個人的目錄。
+
+步驟 4：清理 — 刪除桌面上的測試檔案
+rm /mnt/c/Users/zhouwenwei/Desktop/wsl_hello.txt
+無輸出表示成功
